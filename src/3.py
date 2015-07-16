@@ -1,36 +1,20 @@
-number_to_factorize = int(input("Number: "))
+#!/usr/bin/env python
 
-def check_prime(x):
-	if x < 2 or (x % 2 == 0 and x != 2):
-		return False
-
-	if x == 2:
-		return True
-
-	for n in range(2, int(x ** 0.5) + 1):
-		if x % n == 0:
-			return False
-
-	return True
-
-primes = []
-p = 0
-
-while len(primes) != (number_to_factorize / 2):
-	if check_prime(p) == True:
-		primes.append(p)
-	p += 1
-
-factors = []
-
-def factorization(x):
-
-	for n in primes:
-		while x % n == 0:
-			x = x/n
-			factors.append(n)
-			pass
+# The prime factors of 13195 are 5, 7, 13 and 29.
+#
+# What is the largest prime factor of the number 600851475143 ?
 
 
-factorization(number_to_factorize)
-print(factors[-1])
+def gcd(a, b):
+    """Recursive implementation of Euler's GCD algorithm"""
+
+    if b == 0:
+        return a
+    else:
+        return gcd(b, a % b)
+
+
+def factorize(num):
+    """Using the Pollard-Rho algorithm"""
+
+    # https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm

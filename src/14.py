@@ -2,7 +2,10 @@
 
 # https://projecteuler.net/problem=14
 
-# TODO: bruteforce takes much to long
+# TODO: bruteforce takes much to long, but works (about 30 sec). Fix up.
+# consider writing in C to check how much it takes then. Go to problem forum
+# for some interesting optimizations.
+# first optimization - check for powers of two at every iteration
 
 
 def generate_collatz_length(num):
@@ -23,12 +26,16 @@ def main():
     """Main entry point"""
 
     max_length = 0
-    for i in range(1, 1000000):
-        print(i)
+    number = 0
+    # only because all numbers below are mirrored on top with one or two more
+    # added steps.
+    for i in range(500001, 1000000):
         length = generate_collatz_length(i)
         if length > max_length:
+            number = i
             max_length = length
 
+    print(number)
     print(max_length)
 
 
